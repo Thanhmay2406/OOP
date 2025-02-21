@@ -75,12 +75,22 @@ public class Account
 	public double addInterest() {
 		return this.balance + this.balance * RATE;
 	}
+	
+	// ham chuyen khoan
+	public boolean transfer (Account acc2, double amount) {
+		if (withdraw(amount, 50000) == false) {
+			return false;
+		}
+		if(acc2.deposit(amount) == false) {
+			return false;
+		}
+		return true;
+	}
 
 	// hàm trả về chuỗi chứa thông tin
 	@Override
 	public String toString() {
-//		return "accountNumber=" + accountNumber + ", name=" + name + ", balance=" + balance + "";
-		String ans = accountNumber + " " + name + " " + balance;
+		String ans = String.format("so tai khoan: %d\t ten: %s\t so tien: %ld", this.accountNumber, this.name, this.balance);
 		return ans;
 	}
 }
