@@ -48,8 +48,7 @@ public class CD {
 	
 	@Override
 	public String toString() {
-//		return "CDList [maCD=" + maCD + ", soBaiHat=" + soBaiHat + ", tuaCD=" + tuaCD + ", giaThanh=" + giaThanh + "]";
-		String ans = maCD + " " + soBaiHat + " " + tuaCD + " " + giaThanh;
+		String ans = String.format("mã CD: %d\t số bài hát: %d\t tựa CD: %s\t Giá thành: %ld", this.maCD, this.soBaiHat, this.tuaCD, this.giaThanh);
 		return ans;
 	}
 }

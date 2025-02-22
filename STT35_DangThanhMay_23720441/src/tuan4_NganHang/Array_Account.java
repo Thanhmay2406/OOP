@@ -60,21 +60,4 @@ public class Array_Account {
 		size--;
 		return true;
 	}
-	
-	// hàm chuyển tiền
-	public boolean transfer(Account acc1, Account acc2, double amount) {
-		if (search(acc2.getAccountNumber()) == -1) {
-			return false;
-		}
-		// rút tiền acc1
-		if (acc1.withdraw(amount, 50000) == false) {
-			return false;
-		}
-		// nạp tiền acc2
-		if (acc2.deposit(amount) == false) {
-			acc1.setBalance(amount + acc1.getBalance());
-			return false;
-		}
-		return true;
-	}
 }
