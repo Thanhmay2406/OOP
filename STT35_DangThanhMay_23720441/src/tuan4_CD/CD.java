@@ -48,7 +48,7 @@ public class CD {
 	
 	@Override
 	public String toString() {
-		String ans = String.format("mã CD: %d\t số bài hát: %d\t tựa CD: %s\t Giá thành: %ld", this.maCD, this.soBaiHat, this.tuaCD, this.giaThanh);
+		String ans = String.format("mã CD: %d\t số bài hát: %d\t tựa CD: %s\t Giá thành: %f", this.maCD, this.soBaiHat, this.tuaCD, this.giaThanh);
 		return ans;
 	}
 }
