@@ -75,7 +75,7 @@ public class CDList {
 		for (int i=0 ; i<size ; i++) {
 			int max_index = i;
 			for (int j=i+1 ; j<size ; j++) {
-				if (arr[max_index].getGiaThanh() < arr[i].getGiaThanh()) {
+				if (arr[max_index].getGiaThanh() < arr[j].getGiaThanh()) {
 					max_index = j;
 				}
 			}
@@ -90,7 +90,7 @@ public class CDList {
 		for (int i=0 ; i<size ; i++) {
 			int min_index = i;
 			for (int j=i+1 ; j<size ; j++) {
-				if (arr[min_index].getMaCD() > arr[i].getMaCD()) {
+				if (arr[min_index].getMaCD() > arr[j].getMaCD()) {
 					min_index = j;
 				}
 			}
