@@ -1,10 +1,11 @@
 package tuan5_ChuyenXe;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class main_ChuyenXe {
 	static list_ChuyenXe arr = new list_ChuyenXe();
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		int choid = -1;
 		do {
 			choid = new Scanner(System.in).nextInt();
@@ -16,41 +17,38 @@ public class main_ChuyenXe {
 				add2();
 				break;
 			case 3:
-				delete();
+				search();
 				break;
 			case 4:
-				sum1();
+				print1();
 				break;
 			case 5:
-				sum2();
+				print2();
 				break;
 			case 6:
-				sum3();
-				break;
-			case 7:
-				print();
+				print3();
 				break;
 			}
 		}
-		while (choid > 0 && choid < 8);
+		while (choid > 0 && choid < 7);
+		System.out.println("ket thuc chuong trinh");
 	}
 	static void menu() {
 		System.out.println("1. thêm (nhập cứng)");
 		System.out.println("2. thêm (nhập mềm)");
-		System.out.println("3. xóa theo má số xe");
-		System.out.println("4. tính tổng doang thu");
-		System.out.println("5. tính tổng doanh thu (nội thành)");
-		System.out.println("6. tính tổng doanh thu (ngoại thành)");
-		System.out.println("7. in danh sách chuyến xe");
-		System.out.println("8. thoát");
+		System.out.println("3. tim kiem");
+		System.out.println("4. in danh sach chuyen xe noi thanh");
+		System.out.println("5. in danh sach chuyen xe ngoai thanh");
+		System.out.println("6. in danh sach chuyen xe");
+		System.out.println("7. thoat");
 	}
 	
-	static void add1 () {
+	static void add1 () throws Exception {
 		arr.them(new noiThanh(1, 1, "Nguyen Van A", 500000, 5, 120));
 		arr.them(new ngoaiThanh(1, 1, "Nguyen Van B", 500000, 5, "ttt"));
 	}
 	
-	static void add2() {
+	static void add2() throws Exception {
 		int choid = -1;
 		System.out.println("chọn loại chuyến xe muốn thêm");
 		System.out.println("1. nội thành");
@@ -99,29 +97,61 @@ public class main_ChuyenXe {
 		}
 	}
 	
-	static void delete() {
+	static void search() throws Exception {
 		int x;
-		System.out.println("nhập mã số xe");
+		System.out.println("nhap ma so xe can tim kiem");
 		x = new Scanner(System.in).nextInt();
-		arr.xoa(x);
+		if (arr.timKiemViTri(x) == -1) {
+			throw new Exception("khong tim thay");
+		}
+		else {
+			System.out.println(arr.getval(x).toString());
+		}
 	}
 	
-	static void sum1() {
-		double ans = arr.tongDoanhThu();
-		System.out.println(String.format("tổng doanh thu %f", ans));
+	static void print1() {
+		ArrayList<noiThanh> a = arr.getNoiThanh();
+		for (noiThanh it : a) {
+			System.out.println(it.toString());
+		}
 	}
 	
-	static void sum2() {
-		double ans = arr.tongDoanhThuNT();
-		System.out.println(String.format("tổng doanh thu nội thành %f", ans));
+	static void print2() {
+		ArrayList<ngoaiThanh> a = arr.getNgoaiThanh();
+		for (ngoaiThanh it : a) {
+			System.out.println(it.toString());
+		}
 	}
 	
-	static void sum3() {
-		double ans = arr.tongDoanhThuNTT();
-		System.out.println(String.format("tổng doanh thu ngoại thành %f", ans));
+	static void print3() {
+		for (chuyenXe it : arr.getChuyenXe()) {
+			System.out.println(it.toString());
+		}
 	}
 	
-	static void print() {
-		arr.print();
-	}
+//	static void delete() {
+//		int x;
+//		System.out.println("nhập mã số xe");
+//		x = new Scanner(System.in).nextInt();
+//		arr.xoa(x);
+//	}
+//	
+//	static void sum1() {
+//		double ans = arr.tongDoanhThu();
+//		System.out.println(String.format("tổng doanh thu %f", ans));
+//	}
+//	
+//	static void sum2() {
+//		double ans = arr.tongDoanhThuNT();
+//		System.out.println(String.format("tổng doanh thu nội thành %f", ans));
+//	}
+//	
+//	static void sum3() {
+//		double ans = arr.tongDoanhThuNTT();
+//		System.out.println(String.format("tổng doanh thu ngoại thành %f", ans));
+//	}
+//	
+//	static void print() {
+//		arr.print();
+//	}
 }

@@ -3,51 +3,64 @@ package tuan5_ChuyenXe;
 import java.util.ArrayList;
 
 public class list_ChuyenXe {
-	private ArrayList<chuyenXe> arr;
+	ArrayList <chuyenXe> arr;
 	
 	public list_ChuyenXe() {
-		arr = new ArrayList<>();
+		arr = new ArrayList<chuyenXe>();
 	}
 	
-	public void them (chuyenXe x) {
-		arr.add(x);
+	public chuyenXe getval(int x) {
+		return arr.get(x);
 	}
 	
-	public void xoa (int x) {
-		arr.removeIf(it -> it.getMaSoChuyen() == x);
-	}
-	
-	public double tongDoanhThu() {
-		double ans = 0;
-		for (chuyenXe it : arr) {
-			ans += (it.getDoanhThu());
+	public void them (chuyenXe x) throws Exception {
+		if (arr.contains(x) == false) {
+			arr.add(x);
 		}
-		return ans;
+		else {
+			throw new Exception("ma chuyen xe khong trung");
+		}
 	}
 	
-	public double tongDoanhThuNT() {
-		double ans = 0;
+	public chuyenXe timKiem (int x) {
+		for (chuyenXe it : arr) {
+			if (it.getMaSoChuyen() == x) {
+				return it;
+			}
+		}
+		return null;
+	}
+	
+	public int timKiemViTri (int x) {
+		chuyenXe ans = timKiem(x);
+		if (ans == null) {
+			return arr.indexOf(ans);
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	public ArrayList<noiThanh> getNoiThanh() {
+		ArrayList<noiThanh> ans = new ArrayList<noiThanh>();
 		for (chuyenXe it : arr) {
 			if (it instanceof noiThanh) {
-				ans += it.getDoanhThu();
+				ans.add((noiThanh)it);
 			}
 		}
 		return ans;
 	}
 	
-	public double tongDoanhThuNTT() {
-		double ans = 0;
+	public ArrayList<ngoaiThanh> getNgoaiThanh() {
+		ArrayList<ngoaiThanh> ans = new ArrayList<ngoaiThanh>();
 		for (chuyenXe it : arr) {
 			if (it instanceof ngoaiThanh) {
-				ans += it.getDoanhThu();
+				ans.add((ngoaiThanh)it);
 			}
 		}
 		return ans;
 	}
-	
-	public void print() {
-		for (chuyenXe it : arr) {
-			System.out.println(it.toString());
-		}
+	public ArrayList<chuyenXe> getChuyenXe() {
+		return arr;
 	}
 }
