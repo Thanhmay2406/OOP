@@ -9,6 +9,10 @@ public class list_ChuyenXe {
 		arr = new ArrayList<chuyenXe>();
 	}
 	
+	public chuyenXe getval(int x) {
+		return arr.get(x);
+	}
+	
 	public void them (chuyenXe x) throws Exception {
 		if (arr.contains(x) == false) {
 			arr.add(x);
@@ -55,5 +59,8 @@ public class list_ChuyenXe {
 			}
 		}
 		return ans;
+	}
+	public ArrayList<chuyenXe> getChuyenXe() {
+		return arr;
 	}
 }
