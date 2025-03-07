@@ -8,6 +8,7 @@ public class main_ChuyenXe {
 	public static void main(String[] args) throws Exception {
 		int choid = -1;
 		do {
+			menu();
 			choid = new Scanner(System.in).nextInt();
 			switch (choid) {
 			case 1:
