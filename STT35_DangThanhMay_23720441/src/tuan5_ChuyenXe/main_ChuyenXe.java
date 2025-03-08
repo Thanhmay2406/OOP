@@ -21,17 +21,32 @@ public class main_ChuyenXe {
 				search();
 				break;
 			case 4:
-				print1();
+				print(1);
 				break;
 			case 5:
-				print2();
+				print(2);
 				break;
 			case 6:
-				print3();
+				print(0);
+				break;
+			case 7:
+				delete();
+				break;
+			case 8:
+				doanhThu(0);
+				break;
+			case 9:
+				doanhThu(1);
+				break;
+			case 10:
+				doanhThu(2);
+				break;
+			case 11:
+				sort();
 				break;
 			}
 		}
-		while (choid > 0 && choid < 7);
+		while (choid > 0 && choid < 12);
 		System.out.println("ket thuc chuong trinh");
 	}
 	static void menu() {
@@ -41,7 +56,12 @@ public class main_ChuyenXe {
 		System.out.println("4. in danh sach chuyen xe noi thanh");
 		System.out.println("5. in danh sach chuyen xe ngoai thanh");
 		System.out.println("6. in danh sach chuyen xe");
-		System.out.println("7. thoat");
+		System.out.println("7. xoa chuyen xe");
+		System.out.println("8. tinh tong doanh thu chuyen xe");
+		System.out.println("9. tinh tong doanh thu noi thanh");
+		System.out.println("10. tinh tong doanh thu ngoai thanh");
+		System.out.println("11. sap xep theo ma so chuyen");
+		System.out.println("12. thoat");
 	}
 	
 	static void add1 () throws Exception {
@@ -110,49 +130,35 @@ public class main_ChuyenXe {
 		}
 	}
 	
-	static void print1() {
-		ArrayList<noiThanh> a = arr.getNoiThanh();
-		for (noiThanh it : a) {
-			System.out.println(it.toString());
-		}
-	}
-	
-	static void print2() {
-		ArrayList<ngoaiThanh> a = arr.getNgoaiThanh();
-		for (ngoaiThanh it : a) {
-			System.out.println(it.toString());
-		}
-	}
-	
-	static void print3() {
+	static void print(int type) {
 		for (chuyenXe it : arr.getChuyenXe()) {
-			System.out.println(it.toString());
+			if ((type == 1 && it instanceof noiThanh) || (type == 2 && it instanceof ngoaiThanh) || type == 0) {
+				System.out.println(it);
+			}
 		}
 	}
 	
-//	static void delete() {
-//		int x;
-//		System.out.println("nhập mã số xe");
-//		x = new Scanner(System.in).nextInt();
-//		arr.xoa(x);
-//	}
-//	
-//	static void sum1() {
-//		double ans = arr.tongDoanhThu();
-//		System.out.println(String.format("tổng doanh thu %f", ans));
-//	}
-//	
-//	static void sum2() {
-//		double ans = arr.tongDoanhThuNT();
-//		System.out.println(String.format("tổng doanh thu nội thành %f", ans));
-//	}
-//	
-//	static void sum3() {
-//		double ans = arr.tongDoanhThuNTT();
-//		System.out.println(String.format("tổng doanh thu ngoại thành %f", ans));
-//	}
-//	
-//	static void print() {
-//		arr.print();
-//	}
+	static void delete() {
+		int x;
+		System.out.println("nhập mã số xe");
+		x = new Scanner(System.in).nextInt();
+		arr.xoa(x);
+	}
+	
+	static void doanhThu (int type) {
+		if (type == 0) {
+			System.out.printf("tong doanh thu %f\n", arr.getDoanhThu());
+		}
+		else if (type == 1) {
+			System.out.printf("tong doanh thu noi thanh %f\n", arr.getDoanhThuNoiThanh());
+		}
+		else {
+			System.out.printf("tong doanh thu ngoai thanh %f\n", arr.getDoanhThuNgoaiThanh());
+		}
+	}
+	
+	static void sort() {
+		arr.sort();
+	}
+	
 }
