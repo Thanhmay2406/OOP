@@ -17,9 +17,39 @@ public class main_NhaDat {
 			case 1:
 				nhapCung();
 				break;
+			case 2:
+				nhapMem();
+				break;
+			case 3:
+				print(0);
+				break;
+			case 4:
+				print(1);
+				break;
+			case 5:
+				print(2);
+				break;
+			case 6:
+				count(0);
+				break;
+			case 7:
+				count(1);
+				break;
+			case 8:
+				count(2);
+			case 9:
+				avg(1);
+				break;
+			case 10:
+				avg(2);
+				break;
+			case 11:
+				del();
+				break;
 			}
 		}
 		while (choid > 0 && choid < 12);
+		System.out.println("bye");
 	}
 	
 	static void menu() {
@@ -47,24 +77,41 @@ public class main_NhaDat {
 	}
 	
 	static void nhapMem() throws Exception {
-		int choid = -1;
-		System.out.println("chon loai giao dich ban muon nhap");
-		System.out.println("1. Giao dich dat");
-		System.out.println("2. Giao dich nha");
-		choid = new Scanner(System.in).nextInt();
-		if (choid == 1) {
-			
-		}
-		else if (choid == 2) {
-			
-		}
-		else {
-			throw new Exception("nhap khong hop le");
-		}
-	}
-	
-	static void test1() throws Exception {
-		
+		System.out.println("Chọn loại giao dịch bạn muốn nhập:");
+	    System.out.println("1. Giao dịch đất");
+	    System.out.println("2. Giao dịch nhà");
+	    
+	    int choice = new Scanner(System.in).nextInt();
+
+	    System.out.print("Nhập mã giao dịch: ");
+	    String maGD = new Scanner(System.in).nextLine();
+
+	    System.out.print("Nhập ngày giao dịch (YYYY MM DD): ");
+	    int year = new Scanner(System.in).nextInt();
+	    int month = new Scanner(System.in).nextInt();
+	    int day = new Scanner(System.in).nextInt();
+
+	    System.out.print("Nhập đơn giá: ");
+	    double donGia = new Scanner(System.in).nextDouble();
+	    
+	    System.out.print("Nhập diện tích: ");
+	    double dienTich = new Scanner(System.in).nextDouble();
+
+	    if (choice == 1) {
+	        System.out.print("Nhập loại đất (A/B/C): ");
+	        String loaiDat = new Scanner(System.in).nextLine();
+	        arr.themGiaoDich(new giaoDichDat(maGD, new GregorianCalendar(year, month - 1, day), donGia, dienTich, loaiDat));
+	    } 
+	    else if (choice == 2) {
+	        System.out.print("Nhập loại nhà (Cao cấp/Thường): ");
+	        String loaiNha = new Scanner(System.in).nextLine();
+	        System.out.print("Nhập địa chỉ: ");
+	        String diaChi = new Scanner(System.in).nextLine();
+	        arr.themGiaoDich(new giaoDichNha(maGD, new GregorianCalendar(year, month - 1, day), donGia, dienTich, loaiNha, diaChi));
+	    } 
+	    else {
+	        System.out.println("Lựa chọn không hợp lệ!");
+	    }
 	}
 	
 	static void xoaGiaoDich() throws Exception {
@@ -87,53 +134,48 @@ public class main_NhaDat {
 		System.out.printf("|%-10s|%-20s|%-20s|%-20s|%-20s|%-20s|%-10s|%-10s|", "Ma GD", "Ngay GD", "Don gia", "Loai dat", "Loai nha", "Dia chi", "Dien tich", "Loai GD");
 		System.out.println();
 	}
-
-	static void print1() {
+	
+	// in danh sach theo loai
+	static void print(int type) {
 		inTieuDe();
-		for (giaoDich it : arr) {
-			
+		for (giaoDich it : arr.getDS()) {
+			if ((type == 1 && it instanceof giaoDichDat) || (type == 2 && it instanceof giaoDichNha) || (type == 0)) {
+				System.out.println(it);
+			}
 		}
 	}
 	
-//	public static void inTieuDe() {
-//		for (int i = 1; i < 140; i++) {
-//			System.out.printf("-");
-//		}
-//		System.out.println();
-//		System.out.printf("|%-10s|%-20s|%-20s|%-20s|%-20s|%-20s|%-10s|%-10s|", "Ma GD", "Ngay GD", "Don gia", "Loai dat", "Loai nha", "Dia chi", "Dien tich", "Loai GD");
-//		System.out.println();
-//	}
-//	
-//    public static void main(String[] args) throws Exception {
-//    	ListGiaoDich lsgd = new ListGiaoDich();
-//    	// Tao giao dich dat
-//    	GiaoDich gd1 = new GiaoDichDat("001", new GregorianCalendar(2022, 5, 23), 5000, 600, "A");
-//    	GiaoDich gd2 = new GiaoDichDat("002", new GregorianCalendar(2022, 7, 23), 4000, 600, "A");
-//    	GiaoDich gd3 = new GiaoDichDat("003", new GregorianCalendar(2022, 6, 23), 6000, 600, "A");
-//    	
-//    	// Tao giao dich nha
-//    	GiaoDich gd4 = new GiaoDichNha("004", new GregorianCalendar(2022, 5, 23), 70000, 400, "Cao cap", "3 Huynh Van Nghe");
-//    	GiaoDich gd5 = new GiaoDichNha("005", new GregorianCalendar(2022, 10, 24), 6000, 300, "Thuong", "120 Phan Van Tri");
-//    	GiaoDich gd6 = new GiaoDichNha("006", new GregorianCalendar(2022, 8, 25), 300000, 200, "Cao Cap", "3 Huynh Van Banh");
-//    	
-//    	// Them cac giao dich vao list
-//    	lsgd.themGiaoDich(gd1);
-//    	lsgd.themGiaoDich(gd2);
-//    	lsgd.themGiaoDich(gd3);
-//    	lsgd.themGiaoDich(gd4);
-//    	lsgd.themGiaoDich(gd5);
-//    	lsgd.themGiaoDich(gd6);
-//    	
-//    	// Xoa giao dich co ma "006"
-//    	lsgd.xoaGiaoDich("006");
-//    	
-//    	// In cac giao dich
-//    	inTieuDe();
-//    	lsgd.inGiaoDich();
-//    	
-//    	// In thanh tien trung binh, dem tong so luong cua tung loai
-//    	System.out.println("Tong so giao dich dat: " + lsgd.countGDD());
-//    	System.out.println("Tong so giao dich nha: " + lsgd.countGDN());
-//    	System.out.println("Thanh tien trung binh cua giao dich dat la: " + lsgd.avgThanhTien());
-//    }
+	static void count(int type) {
+		int x = arr.countGDD();
+		int y = arr.countGDN();
+		if (type == 0) {
+			System.out.printf("so luong giao dich %d\n", x + y);
+		}
+		else if (type == 1) {
+			System.out.printf("so luong giao dich dat %d\n", x);
+		}
+		else {
+			System.out.printf("so luong giao dich nha %d\n", y);
+		}
+	}
+	
+	static void avg (int type) {
+		if (type == 1) {
+			System.out.printf("trung binh thanh tien cua giao dich dat %f\n", arr.avgThanhTien1());
+		}
+		else {
+			System.out.printf("trung binh thanh tien cua giao dich nha %f\n", arr.avgThanhTien2());
+		}
+	}
+	
+	static void del () {
+		System.out.println("nhap ma giao dich can xoa");
+		String s = new Scanner(System.in).nextLine();
+		if (arr.xoaGiaoDich(s) == true) {
+			System.out.println("xoa thanh cong");
+		}
+		else {
+			System.out.println("xoa that bai");
+		}
+	}
 }

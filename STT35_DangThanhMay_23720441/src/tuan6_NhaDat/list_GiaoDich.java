@@ -5,7 +5,7 @@ import java.util.List;
 
 public class list_GiaoDich {
 	
-	ArrayList<giaoDich> ls;
+	ArrayList <giaoDich> ls;
 
 	public list_GiaoDich() {
 		ls = new ArrayList<giaoDich>(10);
@@ -19,13 +19,9 @@ public class list_GiaoDich {
 		}
 	}
 	
-//	public void inGiaoDich() {
-//		for (giaoDich g : ls) {
-//			System.out.println(g);
-//		}
-//	}
-	
-//	public List<giaoDich> 
+	public ArrayList<giaoDich> getDS() {
+		return ls;
+	}
 	
 	public giaoDich timGiaoDich(String maGD) {
 		for (giaoDich g: ls) {
@@ -37,10 +33,21 @@ public class list_GiaoDich {
 		return null;
 	}
 	
-	public double avgThanhTien() {
+	public double avgThanhTien1() {
 		double sum = 0;
 		for (giaoDich g : ls) {
 			if (g instanceof giaoDichDat) {
+				sum += g.getThanhTien();
+			}
+		}
+		
+		return (double)sum / ls.size();
+	}
+	
+	public double avgThanhTien2() {
+		double sum = 0;
+		for (giaoDich g : ls) {
+			if (g instanceof giaoDichNha) {
 				sum += g.getThanhTien();
 			}
 		}
