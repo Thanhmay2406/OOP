@@ -33,15 +33,13 @@ public class DanhSachPhonghoc {
 	}
 
 	public List<Phonghoc> getPhongDatChuan() {
-		List<Phonghoc> listDatChuan = new ArrayList<Phonghoc>(ls.size());
-
-		for (Phonghoc phonghoc : listDatChuan) {
-			if (phonghoc.checkDatChuan()) {
-				listDatChuan.add(phonghoc);
-			}
-		}
-
-		return listDatChuan;
+	    List<Phonghoc> listDatChuan = new ArrayList<Phonghoc>();
+	    for (Phonghoc phonghoc : ls) { // Sửa từ listDatChuan thành ls
+	        if (phonghoc.checkDatChuan()) {
+	            listDatChuan.add(phonghoc);
+	        }
+	    }
+	    return listDatChuan;
 	}
 
 	public void sortByDayNha() {
@@ -108,15 +106,16 @@ public class DanhSachPhonghoc {
 	}
 
 	public List<PhongMayTinh> getPhongMT() {
-		List<PhongMayTinh> listPMT = new ArrayList<PhongMayTinh>(ls.size());
-
-		for (PhongMayTinh phongMayTinh : listPMT) {
-			if (phongMayTinh.getSoMayTinh() == 60) {
-				listPMT.add(phongMayTinh);
-			}
-		}
-
-		return listPMT;
+	    List<PhongMayTinh> listPMT = new ArrayList<PhongMayTinh>();
+	    for (Phonghoc phonghoc : ls) { // Sửa từ listPMT thành ls
+	        if (phonghoc instanceof PhongMayTinh) {
+	            PhongMayTinh pmt = (PhongMayTinh) phonghoc;
+	            if (pmt.getSoMayTinh() == 60) {
+	                listPMT.add(pmt);
+	            }
+	        }
+	    }
+	    return listPMT;
 	}
 
 	@Override
