@@ -123,7 +123,15 @@ public class main_HangHoa {
 
     // Hàm 2: Hiển thị toàn bộ danh sách
     private static void hienThiDanhSach(QuanLyHangHoa qlhh) {
-        qlhh.layThongTinDanhSach();
+//        qlhh.layThongTinDanhSach();
+    	if (qlhh.getDanhSachHangHoa().isEmpty()) {
+            System.out.println("Danh sách hàng hóa trống!");
+            return;
+        }
+        System.out.println("Danh sách hàng hóa:");
+        for (HangHoa hh : qlhh.getDanhSachHangHoa()) {
+            System.out.println(hh.toString());
+        }
     }
 
     // Hàm 3: Hiển thị danh sách theo loại
@@ -156,13 +164,15 @@ public class main_HangHoa {
     // Hàm 5: Sắp xếp theo tên tăng dần
     private static void sapXepTheoTen(QuanLyHangHoa qlhh) {
         qlhh.sapXepTheoTenTangDan();
-        qlhh.layThongTinDanhSach();
+//        qlhh.layThongTinDanhSach();
+        hienThiDanhSach(qlhh);
     }
 
     // Hàm 6: Sắp xếp theo số lượng tồn giảm dần
     private static void sapXepTheoSoLuongTon(QuanLyHangHoa qlhh) {
         qlhh.sapXepTheoSoLuongTonGiamDan();
-        qlhh.layThongTinDanhSach();
+//        qlhh.layThongTinDanhSach();
+        hienThiDanhSach(qlhh);
     }
 
     // Hàm 7: Hiển thị hàng thực phẩm khó bán

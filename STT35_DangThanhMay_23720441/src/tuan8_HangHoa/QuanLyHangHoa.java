@@ -41,17 +41,6 @@ public class QuanLyHangHoa {
         System.out.println("Thêm hàng hóa thành công!");
     }
 
-    public void layThongTinDanhSach() {
-        if (danhSachHangHoa.isEmpty()) {
-            System.out.println("Danh sách hàng hóa trống!");
-            return;
-        }
-        System.out.println("Danh sách hàng hóa:");
-        for (HangHoa hh : danhSachHangHoa) {
-            System.out.println(hh.toString());
-        }
-    }
-
     public void layThongTinTheoLoai(String loaiHang) {
         boolean found = false;
         System.out.println("Danh sách " + loaiHang + ":");
