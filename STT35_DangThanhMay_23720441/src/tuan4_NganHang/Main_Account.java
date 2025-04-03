@@ -121,7 +121,7 @@ public class Main_Account {
 		double amount;
 		System.out.println("nhập số tiền muốn chuyển: ");
 		amount = new Scanner(System.in).nextDouble();
-		if (arr.transfer(acc, amount) == false) {
+		if (me.transfer(acc, amount) == false) {
 			System.out.println("chuyển tiền thất bại");
 		}
 		else {
