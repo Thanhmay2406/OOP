@@ -129,7 +129,17 @@ public class test {
 
     // Hàm 2: Hiển thị danh sách tất cả nhân viên
     private static void displayAllStaff() {
-        company.displayAllStaff();
+//        company.displayAllStaff();
+    	System.out.println("Danh sách nhân viên của " + company.getTheName() + ":");
+        // In tiêu đề bảng
+        System.out.printf("|%-10s|%-20s|%-20s|%-20s|%-20s|%-20s|%-10s|%-10s|\n",
+                "Payroll No", "Name", "Basic Salary", "Language", "Bonus", "Department", "Salary", "Type");
+        System.out.println("|----------|--------------------|--------------------|--------------------|--------------------|--------------------|----------|----------|");
+
+        // In danh sách nhân viên
+        for (Employee emp : company.getList()) {
+            System.out.println(emp.toString());
+        }
     }
 
     // Hàm 3: Hiển thị tổng lương hàng tháng
@@ -141,12 +151,25 @@ public class test {
     private static void sortStaffByName() {
         company.sortAllStaffByName();
         System.out.println("Đã sắp xếp nhân viên theo tên!");
-        company.displayAllStaff();
+        displayAllStaff();
     }
 
     // Hàm 5: Hiển thị danh sách lập trình viên
     private static void displayListProgrammers() {
-        System.out.println(company.displayListProgrammers());
+//        System.out.println(company.displayListProgrammers());
+    	StringBuilder result = new StringBuilder("Danh sách lập trình viên:\n");
+        // In tiêu đề bảng
+        result.append(String.format("|%-10s|%-20s|%-20s|%-20s|%-20s|%-20s|%-10s|%-10s|\n",
+                "Payroll No", "Name", "Basic Salary", "Language", "Bonus", "Department", "Salary", "Type"));
+        result.append("|----------|--------------------|--------------------|--------------------|--------------------|--------------------|----------|----------|\n");
+
+        // In danh sách lập trình viên
+        for (Employee emp : company.getList()) {
+            if (emp instanceof Programmer) {
+                result.append(emp.toString()).append("\n");
+            }
+        }
+        System.out.println(result.toString());
     }
 
     // Hàm 6: Cập nhật phòng ban cho Administrator
@@ -182,6 +205,6 @@ public class test {
 
         System.out.println("Đã nhập dữ liệu mẫu thành công!");
         System.out.println("Danh sách nhân viên sau khi nhập mềm:");
-        company.displayAllStaff();
+        displayAllStaff();
     }
 }
