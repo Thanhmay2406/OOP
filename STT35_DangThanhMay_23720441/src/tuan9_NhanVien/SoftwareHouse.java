@@ -23,7 +23,6 @@ public class SoftwareHouse {
 		this.list = list;
 	}
 
-	// Constructor
     public SoftwareHouse(String name) {
         this.theName = name;
         this.list = new ArrayList<>();

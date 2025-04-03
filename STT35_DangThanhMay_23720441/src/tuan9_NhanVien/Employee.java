@@ -5,14 +5,12 @@ public abstract class Employee {
     protected String theName;       // Tên nhân viên
     protected double theBasicMonthlySalary; // Lương cơ bản hàng tháng
 
-    // Constructor
     public Employee(int payrollNumber, String name, double basicMonthlySalary) {
         this.thePayrollNumber = payrollNumber;
         this.theName = name;
         this.theBasicMonthlySalary = basicMonthlySalary;
     }
 
-    // Getter và Setter
     public int getPayrollNumber() {
         return thePayrollNumber;
     }
@@ -25,13 +23,11 @@ public abstract class Employee {
         return theBasicMonthlySalary;
     }
 
-    // Phương thức toString
     @Override
     public String toString() {
         return "Payroll Number: " + thePayrollNumber + ", Name: " + theName + 
                ", Basic Monthly Salary: " + theBasicMonthlySalary;
     }
 
-    // Phương thức trừu tượng getMonthlySalary
     public abstract double getMonthlySalary();
 }

@@ -4,16 +4,15 @@ import java.util.Scanner;
 
 public class test {
 	private static Scanner scanner = new Scanner(System.in);
-    private static SoftwareHouse company = new SoftwareHouse("TechCorp");
+    private static SoftwareHouse company = new SoftwareHouse("001");
 
     public static void main(String[] args) {
         int choice;
 
         do {
-            // Hiển thị menu
             menu();
             choice = scanner.nextInt();
-            scanner.nextLine(); // Xóa bộ đệm
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -50,13 +49,13 @@ public class test {
     
     private static void menu() {
     	System.out.println("\n=== MENU QUẢN LÝ CÔNG TY PHẦN MỀM ===");
-        System.out.println("1. Thêm nhân viên mới");
+        System.out.println("1. Nhập mềm");
         System.out.println("2. Hiển thị danh sách tất cả nhân viên");
         System.out.println("3. Hiển thị tổng lương hàng tháng");
         System.out.println("4. Sắp xếp nhân viên theo tên");
         System.out.println("5. Hiển thị danh sách lập trình viên");
         System.out.println("6. Cập nhật phòng ban cho Administrator");
-        System.out.println("7. Nhập dữ liệu mẫu (nhập mềm)");
+        System.out.println("7. Nhập cứng");
         System.out.println("0. Thoát chương trình");
         System.out.print("Nhập lựa chọn của bạn: ");
     }
@@ -69,18 +68,18 @@ public class test {
         System.out.println("3. Administrator");
         System.out.print("Nhập lựa chọn: ");
         int employeeType = scanner.nextInt();
-        scanner.nextLine(); // Xóa bộ đệm
+        scanner.nextLine();
 
         System.out.print("Nhập mã số nhân viên: ");
         int payrollNumber = scanner.nextInt();
-        scanner.nextLine(); // Xóa bộ đệm
+        scanner.nextLine();
 
         System.out.print("Nhập tên nhân viên: ");
         String name = scanner.nextLine();
 
         System.out.print("Nhập lương cơ bản hàng tháng: ");
         double basicSalary = scanner.nextDouble();
-        scanner.nextLine(); // Xóa bộ đệm
+        scanner.nextLine();
 
         Employee employee = null;
         switch (employeeType) {
@@ -127,16 +126,12 @@ public class test {
         }
     }
 
-    // Hàm 2: Hiển thị danh sách tất cả nhân viên
     private static void displayAllStaff() {
-//        company.displayAllStaff();
     	System.out.println("Danh sách nhân viên của " + company.getTheName() + ":");
-        // In tiêu đề bảng
         System.out.printf("|%-10s|%-20s|%-20s|%-20s|%-20s|%-20s|%-10s|%-10s|\n",
                 "Payroll No", "Name", "Basic Salary", "Language", "Bonus", "Department", "Salary", "Type");
         System.out.println("|----------|--------------------|--------------------|--------------------|--------------------|--------------------|----------|----------|");
 
-        // In danh sách nhân viên
         for (Employee emp : company.getList()) {
             System.out.println(emp.toString());
         }
@@ -156,14 +151,12 @@ public class test {
 
     // Hàm 5: Hiển thị danh sách lập trình viên
     private static void displayListProgrammers() {
-//        System.out.println(company.displayListProgrammers());
     	StringBuilder result = new StringBuilder("Danh sách lập trình viên:\n");
         // In tiêu đề bảng
         result.append(String.format("|%-10s|%-20s|%-20s|%-20s|%-20s|%-20s|%-10s|%-10s|\n",
                 "Payroll No", "Name", "Basic Salary", "Language", "Bonus", "Department", "Salary", "Type"));
         result.append("|----------|--------------------|--------------------|--------------------|--------------------|--------------------|----------|----------|\n");
 
-        // In danh sách lập trình viên
         for (Employee emp : company.getList()) {
             if (emp instanceof Programmer) {
                 result.append(emp.toString()).append("\n");
@@ -176,7 +169,7 @@ public class test {
     private static void updateDepartmentForAdmin() {
         System.out.print("Nhập mã số nhân viên (Administrator) cần cập nhật: ");
         int adminPayrollNumber = scanner.nextInt();
-        scanner.nextLine(); // Xóa bộ đệm
+        scanner.nextLine();
         System.out.print("Nhập phòng ban mới: ");
         String newDepartment = scanner.nextLine();
 
@@ -189,14 +182,12 @@ public class test {
 
     // Hàm 7: Nhập dữ liệu mẫu (nhập mềm)
     private static void importSampleData() {
-        // Thêm một số nhân viên mẫu
         Employee p1 = new Programmer(1, "Nguyen Van A", 5000, "Java");
         Employee p2 = new Programmer(2, "Tran Thi B", 5500, "Python");
         Employee pl1 = new ProjectLeader(3, "Le Van C", 7000, "C++", 2000);
         Employee a1 = new Administrator(4, "Pham Thi D", 6000, "HR");
         Employee a2 = new Administrator(5, "Hoang Van E", 6500, "Finance");
 
-        // Thêm vào công ty
         company.addEmployee(p1);
         company.addEmployee(p2);
         company.addEmployee(pl1);
